@@ -16,23 +16,59 @@ class App extends Component {
       card.id = idx;
       return card;
     });
+
     this.state = {
       player: 'codesmith',
       opponent: 'testing',
       playerHand: [],
       oppHand: [],
-      lastPlay: deck,
-      currentRule: 'any3',
+      lastPlay: [],
+      shuffledDeck: [],
+      newDeck: deck,
+      currentRule: 'must3',
     };
+
+    this.shuffle = this.shuffle.bind(this);
+  }
+  
+  shuffle() {
+    
+    const cardList = this.state.newDeck.slice();
+    const indices = [];
+    const shuffledDeck = [];
+    
+    for (let i = 0; i < 52; i++) {
+      indices.push(i);
+    }
+    while (indices.length > 0) {
+      shuffledDeck.push(cardList[indices.splice([Math.floor(Math.random() * indices.length)], 1)]);
+    }
+    
+    const hand1 = shuffledDeck.splice(0, 13);
+    const hand2 = shuffledDeck.splice(0, 13);
+    return { playerHand: hand1, oppHand: hand2, lastPlay: shuffledDeck };
+  }
+
+  componentDidMount() {
+    this.setState(this.shuffle());
   }
   
   render() {
   
     return (
       <div id="main" >
-        <Player name={this.state.opponent} hand={this.state.oppHand} />
-        <LastPlayed lastPlay={this.state.lastPlay} />
-        <Player name={this.state.player} hand={this.state.playerHand} />
+        <Player 
+          name={this.state.opponent} 
+          hand={this.state.oppHand} 
+        />
+        <LastPlayed 
+          lastPlay={this.state.lastPlay} 
+          rule={this.props.currentRule} 
+        />
+        <Player 
+          name={this.state.player} 
+          hand={this.state.playerHand} 
+        />
       </div>
     );
   }
