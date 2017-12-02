@@ -5,10 +5,12 @@ import Card from './Card';
 class LastPlayed extends Component {
   render() {
     return (
-      <h3> {this.props.lastPlay.map(card => {
-        return <div className="card" key={card.id}>{card.rank} {card.suit} {card.id}</div>
-      })} 
-      </h3>
+      <div>
+        <h3>Last Played Hand</h3> 
+        {this.props.lastPlay.map(card => {
+          return <div className="card" key={card.id}>{card.rank} {card.suit} {card.id}</div>
+        })} 
+      </div>
     );
   }
 }

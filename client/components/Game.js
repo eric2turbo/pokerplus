@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Player from './Player';
 import LastPlayed from './LastPlayed';
 
-class App extends Component {
+class Game extends Component {
   constructor() {
     super();
     let deck = [];
@@ -22,6 +22,8 @@ class App extends Component {
       opponent: 'testing',
       playerHand: [],
       oppHand: [],
+      showPlayer: true,
+      showOpponent: true,
       lastPlay: [],
       shuffledDeck: [],
       newDeck: deck,
@@ -43,7 +45,7 @@ class App extends Component {
     while (indices.length > 0) {
       shuffledDeck.push(cardList[indices.splice([Math.floor(Math.random() * indices.length)], 1)]);
     }
-    
+
     const hand1 = shuffledDeck.splice(0, 13);
     const hand2 = shuffledDeck.splice(0, 13);
     return { playerHand: hand1, oppHand: hand2, lastPlay: shuffledDeck };
@@ -59,7 +61,8 @@ class App extends Component {
       <div id="main" >
         <Player 
           name={this.state.opponent} 
-          hand={this.state.oppHand} 
+          hand={this.state.oppHand}
+          showHand={this.state.showOpponent} 
         />
         <LastPlayed 
           lastPlay={this.state.lastPlay} 
@@ -67,11 +70,12 @@ class App extends Component {
         />
         <Player 
           name={this.state.player} 
-          hand={this.state.playerHand} 
+          hand={this.state.playerHand}
+          showHand={this.state.showPlayer} 
         />
       </div>
     );
   }
 }
 
-export default App;
+export default Game;
