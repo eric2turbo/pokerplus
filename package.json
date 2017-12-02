@@ -2,7 +2,7 @@
   "name": "pokerplus",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "webpack": "./node_modules/.bin/webpack -w",
@@ -37,7 +37,9 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.12.3",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.1.4",
     "mongodb": "^2.0.47",
     "mongoose": "^4.2.3",

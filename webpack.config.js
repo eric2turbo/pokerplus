@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: './client/index.js',
   output: {
-    path: path.join(__dirname, 'build'),
+    path: './public',
     filename: 'bundle.js',
   },
   module: {
@@ -22,7 +22,7 @@ module.exports = {
         test: /(\.css|\.scss)$/,
         loaders: ['style', 'css', 'sass'],
       },
-    ],  
+    ],
   },
 
-}
+};
